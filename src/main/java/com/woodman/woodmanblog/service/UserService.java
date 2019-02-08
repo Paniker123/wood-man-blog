@@ -13,7 +13,7 @@ public interface UserService extends UserDetailsService {
 
     ApiResponse createNewUser(RegisterUserRequest registerUserRequest) throws BadRequestException;
 
-    ResponseUserCredential logging(LoggingUser name) throws UsernameNotFoundException;
+    ResponseUserCredential signIn(LoggingUser name) throws UsernameNotFoundException;
 
     UserDetails loggingById(Long id) throws UsernameNotFoundException;
 

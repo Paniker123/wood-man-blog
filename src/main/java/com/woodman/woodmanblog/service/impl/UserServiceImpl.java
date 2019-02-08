@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseUserCredential logging(LoggingUser loggingUser) throws UsernameNotFoundException {
+    public ResponseUserCredential signIn(LoggingUser loggingUser) throws UsernameNotFoundException {
         var authentication = mAuthenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
                         loggingUser.getUserName(),
