@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -20,11 +21,16 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createNewUser(@RequestBody RegisterUserRequest registerUserRequest) {
-        return ResponseEntity.ok(mUserService.createNewUser(registerUserRequest));
+        return ResponseEntity.created(
+                ServletUriComponentsBuilder
+                        .fromCurrentRequestUri().path("/api/users/welcome")
+                        .build()
+                        .toUri())
+                .body(mUserService.createNewUser(registerUserRequest));
     }
 
 
-    @PostMapping
+    @PostMapping("/logging")
     public ResponseEntity<?> logging(@Valid @RequestBody LoggingUser loggingUser) {
         return ResponseEntity.ok(mUserService.logging(loggingUser));
     }

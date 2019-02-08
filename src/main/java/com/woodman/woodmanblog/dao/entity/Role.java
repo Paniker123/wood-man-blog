@@ -1,7 +1,6 @@
 package com.woodman.woodmanblog.dao.entity;
 
 import com.woodman.woodmanblog.dao.enumObjects.RoleName;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -16,7 +15,7 @@ public class Role {
 
     @Column(name = "name")
     @Enumerated(EnumType.STRING)
-    private RoleName name;
+    private RoleName roleName;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
@@ -24,8 +23,8 @@ public class Role {
     public Role() {
     }
 
-    public Role(RoleName name, Set<User> users) {
-        this.name = name;
+    public Role(RoleName roleName, Set<User> users) {
+        this.roleName = roleName;
         this.users = users;
     }
 
@@ -37,12 +36,12 @@ public class Role {
         this.id = id;
     }
 
-    public RoleName getName() {
-        return name;
+    public RoleName getRoleName() {
+        return roleName;
     }
 
-    public void setName(RoleName name) {
-        this.name = name;
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
     }
 
     public Set<User> getUsers() {

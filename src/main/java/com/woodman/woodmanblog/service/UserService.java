@@ -17,5 +17,4 @@ public interface UserService extends UserDetailsService {
 
     UserDetails loggingById(Long id) throws UsernameNotFoundException;
 
-
 }

@@ -47,9 +47,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ApiResponse createNewUser(RegisterUserRequest registerUserRequest) throws BadRequestException {
-        var isUserExists = mUserRepository.isUserExist(registerUserRequest.getUserName());
+        var isUserExists = mUserRepository.findByUserName(registerUserRequest.getUserName());
 
-        if (isUserExists) throw new BadRequestException("This username is already exists!!!");
+        if (isUserExists.isPresent()) throw new BadRequestException("This username is already exists!!!");
 
         if (!registerUserRequest.getUserPassword().equals(registerUserRequest.getConfirmPassword()))
             throw new BadRequestException("Confirm password not same with password!");
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = mUserRepository.findUserByName(username)
+        var user = mUserRepository.findByUserName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User by id:[ " + username + " ] not found!"));
         return UserPrincipal.create(user);
     }
