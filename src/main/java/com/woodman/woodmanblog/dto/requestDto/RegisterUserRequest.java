@@ -29,7 +29,7 @@ public class RegisterUserRequest {
     @Size(min = 6)
     private String confirmPassword;
 
-    public RegisterUserRequest(@NotNull @NotBlank @Size(min = 3) String userName, @NotNull @NotBlank @Size(min = 6) String userPassword, @NotNull @NotBlank @Size(min = 6) String confirmPassword) {
+    public RegisterUserRequest(String userName,  String userPassword,String confirmPassword) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.confirmPassword = confirmPassword;

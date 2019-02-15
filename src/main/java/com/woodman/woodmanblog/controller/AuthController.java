@@ -21,12 +21,14 @@ public class AuthController {
 
 
     @PostMapping("/signUp")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterUserRequest registerUserRequest) {
+//    @PreAuthorize("")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterUserRequest registerUserRequest) {
         return ResponseEntity.ok(mUserService.createNewUser(registerUserRequest));
     }
 
 
     @PostMapping("/signIn")
+//    @PreAuthorize("")
     public ResponseEntity<?> signIn(@Valid @RequestBody LoggingUser loggingUser) {
         return ResponseEntity.ok(mUserService.signIn(loggingUser));
     }

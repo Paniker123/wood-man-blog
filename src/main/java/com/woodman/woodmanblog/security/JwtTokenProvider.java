@@ -51,7 +51,8 @@ public class JwtTokenProvider {
         return Long.parseLong(Jwts.parser()
                 .setSigningKey(mJwtSecret)
                 .parseClaimsJwt(token)
-                .getBody().getSubject());
+                .getBody()
+                .getSubject());
     }
 
     public ValidationToken validateToken(String authToken) {
