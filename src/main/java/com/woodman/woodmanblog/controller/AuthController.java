@@ -19,16 +19,12 @@ public class AuthController {
     @Autowired
     private UserService mUserService;
 
-
     @PostMapping("/signUp")
-//    @PreAuthorize("")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterUserRequest registerUserRequest) {
         return ResponseEntity.ok(mUserService.createNewUser(registerUserRequest));
     }
 
-
     @PostMapping("/signIn")
-//    @PreAuthorize("")
     public ResponseEntity<?> signIn(@Valid @RequestBody LoggingUser loggingUser) {
         return ResponseEntity.ok(mUserService.signIn(loggingUser));
     }
